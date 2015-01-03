@@ -1,0 +1,66 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:id="@+id/container"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    tools:context="com.geo.dgpsi.geocampus.MainActivity" tools:ignore="MergeRootFrame">
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:stretchColumns="1">
+
+        <TableRow>
+            <!-- Column 1 -->
+            <Button
+                android:id="@+id/menu_button1"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:padding="10dip"
+                android:layout_margin="4dip"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Crear" />
+
+
+
+            <!-- Column 3 -->
+            <Button
+                android:id="@+id/menu_button2"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:padding="10dip"
+                android:layout_margin="4dip"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Visualizar" />
+        </TableRow>
+
+        <TableRow>
+            <!-- Column 1 -->
+            <Button
+                android:id="@+id/menu_button3"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:padding="10dip"
+                android:layout_margin="4dip"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="About" />
+
+            <!-- Column 2 -->
+            <Button
+                android:id="@+id/tbl_txt4"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:padding="10dip"
+                android:layout_margin="4dip"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Gestionar" />
+
+
+        </TableRow>
+    </TableLayout>
+
+    </FrameLayout>
+<!-- From: file:/C:/Users/Giraldillo/workspace/geoCamp/Carlos/GeoCampus/app/src/main/res/layout/activity_main.xml -->
