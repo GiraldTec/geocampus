@@ -36,10 +36,6 @@
             android:label="@string/title_activity_map_view" >
         </activity>
         <activity
-            android:name="com.geo.dgpsi.geocampus.FilterActivity"
-            android:label="@string/title_activity_filter" >
-        </activity>
-        <activity
             android:name="com.geo.dgpsi.geocampus.MainActivity"
             android:label="@string/title_activity_main" >
             <intent-filter>

@@ -16,13 +16,25 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button btMapa = (Button) findViewById(R.id.menu_button2);
-        btMapa.setOnClickListener(new View.OnClickListener() {
+        Button b;
+
+        b = (Button) findViewById(R.id.menu_button2);
+        b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent imapa = new Intent();
-                imapa.setClass(getApplicationContext(),MapView.class);
-                startActivity(imapa);
+                Intent i = new Intent();
+                i.setClass(getApplicationContext(),MapView.class);
+                startActivity(i);
+            }
+        });
+
+        b = (Button) findViewById(R.id.menu_button4);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent();
+                i.setClass(getApplicationContext(),MapView.class);
+                startActivity(i);
             }
         });
     }

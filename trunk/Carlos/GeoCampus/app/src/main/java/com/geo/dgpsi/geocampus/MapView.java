@@ -28,6 +28,13 @@ public class MapView extends FragmentActivity {
         setUpMapIfNeeded();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.mapview, menu);
+        return true;
+    }
+
     /**
      * Sets up the map if it is possible to do so (i.e., the Google Play services APK is correctly
      * installed) and the map has not already been instantiated.. This will ensure that we only ever
@@ -78,7 +85,7 @@ public class MapView extends FragmentActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-
+        System.out.println("caraculo");
         return super.onOptionsItemSelected(item);
     }
 
