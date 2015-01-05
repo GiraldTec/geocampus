@@ -32,8 +32,12 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name="com.geo.dgpsi.geocampus.MapView"
-            android:label="@string/title_activity_map_view" >
+            android:name="com.geo.dgpsi.geocampus.MapViewActivity"
+            android:label="@string/title_activity_map_view"
+            android:parentActivityName="com.geo.dgpsi.geocampus.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.geo.dgpsi.geocampus.MainActivity" />
         </activity>
         <activity
             android:name="com.geo.dgpsi.geocampus.MainActivity"
@@ -43,6 +47,14 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.geo.dgpsi.geocampus.CrearActivity"
+            android:label="@string/title_activity_crear"
+            android:parentActivityName="com.geo.dgpsi.geocampus.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.geo.dgpsi.geocampus.MainActivity" />
         </activity>
     </application>
 

@@ -23,17 +23,17 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent();
-                i.setClass(getApplicationContext(),MapView.class);
+                i.setClass(getApplicationContext(),MapViewActivity.class);
                 startActivity(i);
             }
         });
 
-        b = (Button) findViewById(R.id.menu_button4);
+        b = (Button) findViewById(R.id.menu_button1);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent();
-                i.setClass(getApplicationContext(),MapView.class);
+                i.setClass(getApplicationContext(),CrearActivity.class);
                 startActivity(i);
             }
         });

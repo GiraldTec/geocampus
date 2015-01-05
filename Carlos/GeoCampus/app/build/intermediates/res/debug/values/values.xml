@@ -270,6 +270,7 @@
     <string name="store_picture_title">Save image</string>
     <!-- From: file:/C:/Users/Giraldillo/workspace/geoCamp/Carlos/GeoCampus/app/src/main/res/values/strings.xml -->
     <eat-comment/>
+    <string name="title_activity_crear">CrearActivity</string>
     <string name="title_activity_filter">FilterActivity</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_map_view">MapView</string>
