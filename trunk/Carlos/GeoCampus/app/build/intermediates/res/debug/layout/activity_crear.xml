@@ -6,8 +6,71 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.geo.dgpsi.geocampus.CrearActivity">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <TableRow
+        android:id="@+id/row_lat"
+        android:background="#ffffff"
+        android:layout_margin="1dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true">
+
+        <TextView
+            android:text="Latitud:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:gravity="center"
+            android:layout_column="0"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip" />
+
+        <TextView
+            android:layout_height="40dip"
+            android:id="@+id/tvLatitud"
+            android:width="140dp"
+            android:gravity="center"
+            android:layout_alignParentRight="true"
+            android:singleLine="false"
+            android:background="#77ccffde" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/row_lon"
+        android:background="#ffffff"
+        android:layout_below="@+id/row_lat"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="1dp">
+        <TextView
+            android:text="Latitud:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:gravity="center"
+            android:layout_column="0"
+            android:paddingRight="10dip"
+            android:paddingLeft="10dip" />
+
+        <TextView
+            android:layout_height="40dip"
+            android:id="@+id/tvLongitud"
+            android:width="140dp"
+            android:background="#77ccffde"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:layout_alignParentEnd="true" />
+    </TableRow>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Actualiza GPS"
+        android:id="@+id/btActualizaGps"
+        android:width="100dp"
+        android:layout_below="@+id/row_lon"
+        android:layout_centerHorizontal="true" />
+
 
 </RelativeLayout>
 <!-- From: file:/C:/Users/Giraldillo/workspace/geoCamp/Carlos/GeoCampus/app/src/main/res/layout/activity_crear.xml -->

@@ -1,17 +1,62 @@
 package com.geo.dgpsi.geocampus;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 
-public class CrearActivity extends ActionBarActivity {
+public class CrearActivity extends Activity {
+    TextView tvLatitud;
+    TextView tvLongitud;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear);
+
+        tvLatitud = (TextView) findViewById(R.id.tvLatitud);
+        tvLongitud = (TextView)findViewById(R.id.tvLongitud);
+
+        LocationManager locManager = (LocationManager)getSystemService(LOCATION_SERVICE);
+        final Location localizacion = locManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+        if (localizacion!=null){
+            tvLatitud.setText(String.valueOf(localizacion.getLatitude()));
+            tvLongitud.setText(String.valueOf(localizacion.getLongitude()));
+        }else{
+            tvLatitud.setText("wait for it..");
+            tvLongitud.setText("wait for it..");
+        }
+
+        LocationListener locListener = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+                tvLatitud.setText(String.valueOf(localizacion.getLatitude()));
+                tvLongitud.setText(String.valueOf(localizacion.getLongitude()));
+            }
+
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+
+            }
+
+            @Override
+            public void onProviderEnabled(String provider) {
+
+            }
+
+            @Override
+            public void onProviderDisabled(String provider) {
+
+            }
+        };
+
+        locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,1000*5,10,locListener );
     }
 
 
