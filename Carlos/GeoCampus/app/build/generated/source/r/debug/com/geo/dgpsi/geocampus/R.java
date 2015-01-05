@@ -1695,8 +1695,8 @@ containing a value of this type.
         public static final int powered_by_google_light=0x7f020055;
     }
     public static final class id {
-        public static final int action_amarillo=0x7f09005d;
-        public static final int action_azul=0x7f09005b;
+        public static final int action_amarillo=0x7f090062;
+        public static final int action_azul=0x7f090060;
         public static final int action_bar=0x7f090045;
         public static final int action_bar_activity_content=0x7f090000;
         public static final int action_bar_container=0x7f090044;
@@ -1710,22 +1710,23 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f090042;
         public static final int action_mode_bar_stub=0x7f090041;
         public static final int action_mode_close_button=0x7f090034;
-        public static final int action_rojo=0x7f09005a;
-        public static final int action_settings=0x7f090059;
-        public static final int action_verde=0x7f09005c;
+        public static final int action_rojo=0x7f09005f;
+        public static final int action_settings=0x7f09005e;
+        public static final int action_verde=0x7f090061;
         public static final int activity_chooser_view_content=0x7f090035;
         public static final int adjust_height=0x7f090016;
         public static final int adjust_width=0x7f090017;
         public static final int always=0x7f09001b;
         public static final int beginning=0x7f090013;
         public static final int book_now=0x7f09002b;
+        public static final int btActualizaGps=0x7f090057;
         public static final int buyButton=0x7f090028;
         public static final int buy_now=0x7f09002c;
         public static final int buy_with_google=0x7f09002d;
         public static final int checkbox=0x7f09003d;
         public static final int classic=0x7f09002f;
         public static final int collapseActionView=0x7f09001c;
-        public static final int container=0x7f090053;
+        public static final int container=0x7f090058;
         public static final int decor_content_parent=0x7f090043;
         public static final int default_activity_button=0x7f090038;
         public static final int dialog=0x7f090020;
@@ -1747,12 +1748,12 @@ containing a value of this type.
         public static final int image=0x7f090037;
         public static final int listMode=0x7f090009;
         public static final int list_item=0x7f090039;
-        public static final int map=0x7f090058;
+        public static final int map=0x7f09005d;
         public static final int match_parent=0x7f09002a;
-        public static final int menu_button1=0x7f090054;
-        public static final int menu_button2=0x7f090055;
-        public static final int menu_button3=0x7f090056;
-        public static final int menu_button4=0x7f090057;
+        public static final int menu_button1=0x7f090059;
+        public static final int menu_button2=0x7f09005a;
+        public static final int menu_button3=0x7f09005b;
+        public static final int menu_button4=0x7f09005c;
         public static final int middle=0x7f090015;
         public static final int monochrome=0x7f090031;
         public static final int never=0x7f09001e;
@@ -1762,6 +1763,8 @@ containing a value of this type.
         public static final int progress_circular=0x7f090005;
         public static final int progress_horizontal=0x7f090006;
         public static final int radio=0x7f09003f;
+        public static final int row_lat=0x7f090053;
+        public static final int row_lon=0x7f090055;
         public static final int sandbox=0x7f090026;
         public static final int satellite=0x7f090019;
         public static final int search_badge=0x7f090049;
@@ -1785,6 +1788,8 @@ containing a value of this type.
         public static final int tabMode=0x7f09000b;
         public static final int terrain=0x7f09001a;
         public static final int title=0x7f09003b;
+        public static final int tvLatitud=0x7f090054;
+        public static final int tvLongitud=0x7f090056;
         public static final int up=0x7f090008;
         public static final int useLogo=0x7f090012;
         public static final int withText=0x7f09001f;
