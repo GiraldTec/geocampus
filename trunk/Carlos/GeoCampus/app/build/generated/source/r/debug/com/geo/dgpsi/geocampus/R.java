@@ -1818,14 +1818,16 @@ containing a value of this type.
         public static final int abc_search_dropdown_item_icons_2line=0x7f030014;
         public static final int abc_search_view=0x7f030015;
         public static final int abc_simple_dropdown_hint=0x7f030016;
-        public static final int activity_main=0x7f030017;
-        public static final int activity_map_view=0x7f030018;
-        public static final int support_simple_spinner_dropdown_item=0x7f030019;
+        public static final int activity_crear=0x7f030017;
+        public static final int activity_main=0x7f030018;
+        public static final int activity_map_view=0x7f030019;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001a;
     }
     public static final class menu {
         public static final int global=0x7f0d0000;
         public static final int mapview=0x7f0d0001;
-        public static final int menu_main=0x7f0d0002;
+        public static final int menu_crear=0x7f0d0002;
+        public static final int menu_main=0x7f0d0003;
     }
     public static final class raw {
         public static final int gtm_analytics=0x7f050000;
@@ -1898,13 +1900,14 @@ containing a value of this type.
         public static final int navigation_drawer_open=0x7f0b003b;
         public static final int store_picture_message=0x7f0b003c;
         public static final int store_picture_title=0x7f0b003d;
-        public static final int title_activity_filter=0x7f0b003e;
-        public static final int title_activity_main=0x7f0b003f;
-        public static final int title_activity_map_view=0x7f0b0040;
-        public static final int title_section1=0x7f0b0041;
-        public static final int title_section2=0x7f0b0042;
-        public static final int title_section3=0x7f0b0043;
-        public static final int wallet_buy_button_place_holder=0x7f0b0044;
+        public static final int title_activity_crear=0x7f0b003e;
+        public static final int title_activity_filter=0x7f0b003f;
+        public static final int title_activity_main=0x7f0b0040;
+        public static final int title_activity_map_view=0x7f0b0041;
+        public static final int title_section1=0x7f0b0042;
+        public static final int title_section2=0x7f0b0043;
+        public static final int title_section3=0x7f0b0044;
+        public static final int wallet_buy_button_place_holder=0x7f0b0045;
     }
     public static final class style {
         /**  Customize your theme here. 

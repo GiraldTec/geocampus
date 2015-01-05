@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.geo.dgpsi.geocampus.MapView">
+    tools:context="com.geo.dgpsi.geocampus.MapViewActivity">
     <item android:id="@+id/action_rojo" android:title="@string/action_rojo"
         app:showAsAction="withText|ifRoom" />
     <item android:id="@+id/action_azul" android:title="@string/action_azul"

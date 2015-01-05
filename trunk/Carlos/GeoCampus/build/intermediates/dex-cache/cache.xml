@@ -16,13 +16,6 @@
         <dex dex="C:\Users\Giraldillo\workspace\geoCamp\Carlos\GeoCampus\app\build\intermediates\pre-dexed\debug\classes-2779ce182c113351746e6dfbdc5844e6fdb221fe.jar" />
     </item>
     <item
-        jar="C:\Users\Giraldillo\workspace\geoCamp\Carlos\GeoCampus\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="C:\Users\Giraldillo\workspace\geoCamp\Carlos\GeoCampus\app\build\intermediates\pre-dexed\debug\classes-40edf622d051b0abb233ffd573c81ea93d173ea4.jar" />
-    </item>
-    <item
         jar="C:\SoftDevKit\android\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
         jumboMode="false"
         revision="21.1.2"
@@ -35,6 +28,13 @@
         revision="21.1.2"
         sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
         <dex dex="C:\Users\Giraldillo\workspace\geoCamp\Carlos\GeoCampus\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-6cfd79c1f87950ba8b5dac4144aeb2bfd9335dfd.jar" />
+    </item>
+    <item
+        jar="C:\Users\Giraldillo\workspace\geoCamp\Carlos\GeoCampus\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="C:\Users\Giraldillo\workspace\geoCamp\Carlos\GeoCampus\app\build\intermediates\pre-dexed\debug\classes-40edf622d051b0abb233ffd573c81ea93d173ea4.jar" />
     </item>
 
 </items>
