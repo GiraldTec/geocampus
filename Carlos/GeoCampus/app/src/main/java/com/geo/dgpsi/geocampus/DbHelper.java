@@ -12,13 +12,13 @@ public class DbHelper extends SQLiteOpenHelper{
     private static final String DB_NAME = "locales.sqlite";
     private static final int DB_VERSION = 1 ;
 
-    public DbHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, factory, version);
+    public DbHelper(Context context) {
+        super(context, DB_NAME, null, DB_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
+        db.execSQL(DbManager.CREATE_TABLE);
     }
 
     @Override
