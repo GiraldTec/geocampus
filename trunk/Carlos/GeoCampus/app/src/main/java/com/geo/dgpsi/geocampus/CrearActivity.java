@@ -7,18 +7,31 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class CrearActivity extends Activity {
-    TextView tvLatitud;
-    TextView tvLongitud;
+    public static TextView tvLatitud;
+    public static TextView tvLongitud;
+    public static DbManager database;
+    public static Spinner spin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear);
 
+        ///////////// Creamos la base de datos
+        database = new DbManager(this);
+
+        ///////// Creamos la intereccion con el GPS y los campos de latitud y longitud
         tvLatitud = (TextView) findViewById(R.id.tvLatitud);
         tvLongitud = (TextView)findViewById(R.id.tvLongitud);
 
@@ -41,44 +54,45 @@ public class CrearActivity extends Activity {
             }
 
             @Override
-            public void onStatusChanged(String provider, int status, Bundle extras) {
-
-            }
+            public void onStatusChanged(String provider, int status, Bundle extras) {}
 
             @Override
-            public void onProviderEnabled(String provider) {
-
-            }
+            public void onProviderEnabled(String provider) {}
 
             @Override
-            public void onProviderDisabled(String provider) {
-
-            }
+            public void onProviderDisabled(String provider) {}
         };
 
         locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,1000*5,10,locListener );
+
+        //////// Creamos la interaccion con las etiquetas
+        spin = (Spinner) findViewById(R.id.etiquetas);
+        List<String> list = new ArrayList<String>();
+        list.add("Estudiar");
+        list.add("Comer");
+        list.add("Deporte");
+        list.add("Diversion");
+
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>
+                (this, android.R.layout.simple_spinner_item,list);
+
+        dataAdapter.setDropDownViewResource
+                (android.R.layout.simple_spinner_dropdown_item);
+
+        spin.setAdapter(dataAdapter);
+
+        spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_crear, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }
