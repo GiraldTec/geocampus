@@ -2,6 +2,7 @@ package com.geo.dgpsi.geocampus;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 /**
  * Created by Giraldillo on 05/01/2015.
@@ -22,7 +23,9 @@ public class DbManager {
             + CN_LON +" real not null,"
             + CN_LAT +" real not null,"
             + CN_TAG +" text not null,"
-            + CN_COM +" char(30));";
+            + CN_COM +" text not null);";
+
+    public static final String ROW_NUMBER = "select count(*)";
 
     private SQLiteDatabase db;
     private DbHelper helper;
@@ -39,5 +42,9 @@ public class DbManager {
         valores.put(CN_COM,comentario);
 
         db.insert(TABLE_NAME,null,valores);
+    }
+
+    public long getSize(){
+        return DatabaseUtils.queryNumEntries(db,TABLE_NAME);
     }
 }
