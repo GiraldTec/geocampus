@@ -118,11 +118,29 @@
         android:layout_below="@+id/labelzone"
         android:layout_margin="1dp">
         <EditText
+            android:id="@+id/comentspace"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:maxLength="30"
             android:inputType="text"/>
 
     </TableRow>
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Crear GeoPunto"
+        android:id="@+id/btCreate"
+        android:layout_below="@+id/comentzone"
+        android:clickable="true"
+        android:layout_centerHorizontal="true"/>
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:id="@+id/dbwindow"
+        android:background="#77ccffde"
+        android:layout_below="@+id/btCreate"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"/>
 </RelativeLayout>
 <!-- From: file:/C:/Users/Giraldillo/workspace/geoCamp/Carlos/GeoCampus/app/src/main/res/layout/activity_crear.xml -->

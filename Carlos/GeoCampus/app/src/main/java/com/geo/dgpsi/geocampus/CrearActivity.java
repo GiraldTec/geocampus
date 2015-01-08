@@ -1,6 +1,8 @@
 package com.geo.dgpsi.geocampus;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -10,6 +12,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -18,10 +22,11 @@ import java.util.List;
 
 
 public class CrearActivity extends Activity {
-    public static TextView tvLatitud;
-    public static TextView tvLongitud;
-    public static DbManager database;
+    public static TextView tvLatitud, tvLongitud, tvDBW;
+    public static DbManager manager;
     public static Spinner spin;
+    public static Button buttAct, buttcreate;
+    public static GPSTracker gps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,41 +34,40 @@ public class CrearActivity extends Activity {
         setContentView(R.layout.activity_crear);
 
         ///////////// Creamos la base de datos
-        database = new DbManager(this);
+        manager = new DbManager(this);
 
         ///////// Creamos la intereccion con el GPS y los campos de latitud y longitud
+        gps = new GPSTracker(this);
+
         tvLatitud = (TextView) findViewById(R.id.tvLatitud);
         tvLongitud = (TextView)findViewById(R.id.tvLongitud);
 
-        LocationManager locManager = (LocationManager)getSystemService(LOCATION_SERVICE);
-        final Location localizacion = locManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        //LocationManager locManager = (LocationManager)getSystemService(LOCATION_SERVICE);
+        //final Location localizacion = locManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
-        if (localizacion!=null){
-            tvLatitud.setText(String.valueOf(localizacion.getLatitude()));
-            tvLongitud.setText(String.valueOf(localizacion.getLongitude()));
+        if(gps.canGetLocation()){
+            tvLatitud.setText(String.valueOf(gps.getLatitude()));//String.valueOf(localizacion.getLatitude()));
+            tvLongitud.setText(String.valueOf(gps.getLongitude()));//String.valueOf(localizacion.getLongitude()));
         }else{
             tvLatitud.setText("wait for it..");
             tvLongitud.setText("wait for it..");
         }
 
-        LocationListener locListener = new LocationListener() {
+        ///// Boton de actualizar
+
+        buttAct = (Button) findViewById(R.id.btActualizaGps);
+        buttAct.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onLocationChanged(Location location) {
-                tvLatitud.setText(String.valueOf(localizacion.getLatitude()));
-                tvLongitud.setText(String.valueOf(localizacion.getLongitude()));
+            public void onClick(View v) {
+                if(gps.canGetLocation()){
+                    tvLatitud.setText(String.valueOf(gps.getLatitude()));//String.valueOf(localizacion.getLatitude()));
+                    tvLongitud.setText(String.valueOf(gps.getLongitude()));//String.valueOf(localizacion.getLongitude()));
+                }else{
+                    tvLatitud.setText("wait for it..");
+                    tvLongitud.setText("wait for it..");
+                }
             }
-
-            @Override
-            public void onStatusChanged(String provider, int status, Bundle extras) {}
-
-            @Override
-            public void onProviderEnabled(String provider) {}
-
-            @Override
-            public void onProviderDisabled(String provider) {}
-        };
-
-        locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,1000*5,10,locListener );
+        });
 
         //////// Creamos la interaccion con las etiquetas
         spin = (Spinner) findViewById(R.id.etiquetas);
@@ -73,7 +77,7 @@ public class CrearActivity extends Activity {
         list.add("Deporte");
         list.add("Diversion");
 
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>
+        final ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>
                 (this, android.R.layout.simple_spinner_item,list);
 
         dataAdapter.setDropDownViewResource
@@ -81,17 +85,34 @@ public class CrearActivity extends Activity {
 
         spin.setAdapter(dataAdapter);
 
-        spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        ////////// Rellenar comentario(30)
+
+        final EditText comentSpace =  (EditText) findViewById(R.id.comentspace);
+
+
+
+        ////////// Funcionalidad de crear un geopunto
+
+        tvDBW = (TextView) findViewById(R.id.dbwindow);
+
+
+        buttcreate = (Button) findViewById(R.id.btCreate);
+        buttcreate.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void onClick(View v) {
+            // TODO arreglar el fallo de no tener coordenadas (y q no se joda el casting....)
+                Float lat = new Float(tvLatitud.getText().toString());
+                Float lon = new Float(tvLongitud.getText().toString());
+                String tag = new String(spin.getSelectedItem().toString());
+                String com = new String(comentSpace.getText().toString());
 
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
+                manager.insertar(lat.floatValue(),lon.floatValue(),tag,com);
+                tvDBW.setText(String.valueOf(manager.getSize()));
+                //finish();
             }
         });
+
+
 
     }
 
