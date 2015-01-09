@@ -1,0 +1,73 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:id="@+id/container"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    tools:context=".MainActivity" tools:ignore="MergeRootFrame">
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:stretchColumns="1">
+
+        <TableRow android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/menu_button1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Crear"
+                android:enabled="true"
+                android:clickable="false"
+                android:elegantTextHeight="false"
+                android:paddingTop="50dip"
+                android:paddingBottom="50dip"
+                android:paddingRight="50dip"
+                android:paddingLeft="50dip" />
+
+            <Button
+                android:id="@+id/menu_button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dip"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Visualizar"
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip"
+                android:paddingTop="50dip"
+                android:paddingBottom="50dip" />
+        </TableRow>
+
+        <TableRow>
+
+            <Button
+                android:id="@+id/menu_button3"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dip"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="About"
+                android:paddingTop="50dip"
+                android:paddingBottom="50dip" />
+
+            <Button
+                android:id="@+id/menu_button4"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dip"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Gestionar"
+                android:paddingTop="50dip"
+                android:paddingBottom="50dip" />
+
+        </TableRow>
+
+    </TableLayout>
+
+</FrameLayout>
