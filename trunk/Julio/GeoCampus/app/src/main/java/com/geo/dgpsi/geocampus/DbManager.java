@@ -1,9 +1,11 @@
 package com.geo.dgpsi.geocampus;
 
-import android.content.ContentValues;
+import android.app.Activity;
 import android.content.Context;
-import android.database.DatabaseUtils;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.content.ContentValues;
+import android.database.DatabaseUtils;
 /**
  * Created by Giraldillo on 05/01/2015.
  */
@@ -34,7 +36,7 @@ public class DbManager {
         db = helper.getWritableDatabase();
     }
 
-    public void insertar(float longitud, float latitud, String etiqueta, String comentario){
+    public void insertar(double longitud, double latitud, String etiqueta, String comentario){
         ContentValues valores = new ContentValues();
         valores.put(CN_LON,longitud);
         valores.put(CN_LAT,latitud);
@@ -47,4 +49,10 @@ public class DbManager {
     public long getSize(){
         return DatabaseUtils.queryNumEntries(db,TABLE_NAME);
     }
+
+    public Cursor leerFila(String tag) {
+        Cursor c = db.rawQuery("SELECT longitud,latitud FROM gplocales WHERE etiqueta="+"'"+tag+"'", null);
+    return c;
+    }
+
 }

@@ -433,6 +433,9 @@ int drawable ic_plusone_standard_off_client 0x7f020052
 int drawable ic_plusone_tall_off_client 0x7f020053
 int drawable powered_by_google_dark 0x7f020054
 int drawable powered_by_google_light 0x7f020055
+int id VerticalLine 0x7f09006b
+int id VerticalLine1 0x7f090067
+int id VerticalLine2 0x7f090069
 int id action_bar 0x7f090045
 int id action_bar_activity_content 0x7f090000
 int id action_bar_container 0x7f090044
@@ -446,7 +449,7 @@ int id action_menu_presenter 0x7f090003
 int id action_mode_bar 0x7f090042
 int id action_mode_bar_stub 0x7f090041
 int id action_mode_close_button 0x7f090034
-int id action_settings 0x7f090065
+int id action_settings 0x7f09006d
 int id activity_chooser_view_content 0x7f090035
 int id adjust_height 0x7f090016
 int id adjust_width 0x7f090017
@@ -504,6 +507,11 @@ int id production 0x7f090025
 int id progress_circular 0x7f090005
 int id progress_horizontal 0x7f090006
 int id radio 0x7f09003f
+int id radioComer 0x7f090068
+int id radioDeporte 0x7f09006a
+int id radioDiver 0x7f09006c
+int id radioEstudiar 0x7f090066
+int id radio_group_list_selector 0x7f090065
 int id row_lat 0x7f090054
 int id row_lon 0x7f090056
 int id sandbox 0x7f090026
