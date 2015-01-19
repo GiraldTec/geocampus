@@ -1695,6 +1695,9 @@ containing a value of this type.
         public static final int powered_by_google_light=0x7f020055;
     }
     public static final class id {
+        public static final int VerticalLine=0x7f09006b;
+        public static final int VerticalLine1=0x7f090067;
+        public static final int VerticalLine2=0x7f090069;
         public static final int action_bar=0x7f090045;
         public static final int action_bar_activity_content=0x7f090000;
         public static final int action_bar_container=0x7f090044;
@@ -1708,7 +1711,7 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f090042;
         public static final int action_mode_bar_stub=0x7f090041;
         public static final int action_mode_close_button=0x7f090034;
-        public static final int action_settings=0x7f090065;
+        public static final int action_settings=0x7f09006d;
         public static final int activity_chooser_view_content=0x7f090035;
         public static final int adjust_height=0x7f090016;
         public static final int adjust_width=0x7f090017;
@@ -1766,6 +1769,11 @@ containing a value of this type.
         public static final int progress_circular=0x7f090005;
         public static final int progress_horizontal=0x7f090006;
         public static final int radio=0x7f09003f;
+        public static final int radioComer=0x7f090068;
+        public static final int radioDeporte=0x7f09006a;
+        public static final int radioDiver=0x7f09006c;
+        public static final int radioEstudiar=0x7f090066;
+        public static final int radio_group_list_selector=0x7f090065;
         public static final int row_lat=0x7f090054;
         public static final int row_lon=0x7f090056;
         public static final int sandbox=0x7f090026;

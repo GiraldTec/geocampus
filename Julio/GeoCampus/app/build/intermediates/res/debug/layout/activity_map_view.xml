@@ -1,6 +1,79 @@
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:id="@+id/map" tools:context=".MapView"
-    android:name="com.google.android.gms.maps.SupportMapFragment"
-    tools:layout="@layout/activity_map_view" />
-<!-- From: file:/C:/Users/Giraldillo/workspace/geoCamp/Carlos/GeoCampus/app/src/main/res/layout/activity_map_view.xml -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MapActivity" >
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/map" tools:context=".MapView"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        tools:layout="@layout/activity_map_view" />
+
+    <RadioGroup
+        android:id="@+id/radio_group_list_selector"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:background="#80000000"
+        android:padding="4dp" >
+
+        <RadioButton
+            android:id="@+id/radioEstudiar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Estudiar"
+            android:gravity="center_horizontal|center_vertical"
+            android:layout_weight="1"
+            android:background="#cde"
+            android:textColor="#f00" />
+        <View
+            android:id="@+id/VerticalLine1"
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:background="#aaa" />
+
+        <RadioButton
+            android:id="@+id/radioComer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="Comer"
+            android:layout_weight="1"
+            android:background="#cde"
+            android:textColor="#500" />
+
+        <View
+            android:id="@+id/VerticalLine2"
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:background="#aaa" />
+
+        <RadioButton
+            android:id="@+id/radioDeporte"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="Deporte"
+            android:layout_weight="1"
+            android:background="#cde"
+            android:textColor="#00f" />
+        <View
+            android:id="@+id/VerticalLine"
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:background="#aaa" />
+
+        <RadioButton
+            android:id="@+id/radioDiver"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="Diversión"
+            android:layout_weight="1"
+            android:background="#cde"
+            android:textColor="#050" />
+    </RadioGroup>
+</FrameLayout><!-- From: file:/D:/Julio/GeoCampus/app/src/main/res/layout/activity_map_view.xml -->
