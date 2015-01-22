@@ -94,7 +94,7 @@
         <TextView
             android:text="Etiqueta:"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="40dip"
             android:layout_alignParentLeft="true"
             android:gravity="center"
             android:paddingRight="10dip"
@@ -103,9 +103,8 @@
             android:layout_gravity="center"/>
         <Spinner
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="40dip"
             android:id="@+id/etiquetas"
-            android:layout_below="@+id/coordzone"
             android:background="#77ccffde"
             android:layout_alignParentRight="true"/>
     </TableRow>
@@ -125,15 +124,34 @@
             android:inputType="text"/>
 
     </TableRow>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tomar Foto"
+        android:id="@+id/btPicture"
+        android:layout_below="@+id/comentzone"
+        android:clickable="true"
+        android:layout_centerHorizontal="true"/>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:id="@+id/ivPicture"
+        android:layout_below="@+id/btPicture"
+        android:layout_centerHorizontal="true"/>
+
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Crear GeoPunto"
         android:id="@+id/btCreate"
-        android:layout_below="@+id/comentzone"
+        android:layout_below="@+id/ivPicture"
         android:clickable="true"
         android:layout_centerHorizontal="true"/>
+
     <TextView
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
@@ -142,4 +160,5 @@
         android:layout_below="@+id/btCreate"
         android:gravity="center"
         android:layout_centerHorizontal="true"/>
+
 </RelativeLayout>

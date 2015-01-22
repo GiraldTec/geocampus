@@ -37,6 +37,16 @@ public class MainActivity extends Activity {
                 startActivity(i);
             }
         });
+
+        b = (Button) findViewById(R.id.menu_button4);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent();
+                i.setClass(getApplicationContext(),GestionActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
 

@@ -1708,7 +1708,7 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f090042;
         public static final int action_mode_bar_stub=0x7f090041;
         public static final int action_mode_close_button=0x7f090034;
-        public static final int action_settings=0x7f090065;
+        public static final int action_settings=0x7f09006e;
         public static final int activity_chooser_view_content=0x7f090035;
         public static final int adjust_height=0x7f090016;
         public static final int adjust_width=0x7f090017;
@@ -1716,7 +1716,10 @@ containing a value of this type.
         public static final int beginning=0x7f090013;
         public static final int book_now=0x7f09002b;
         public static final int btActualizaGps=0x7f090058;
-        public static final int btCreate=0x7f09005d;
+        public static final int btCreate=0x7f09005f;
+        public static final int btEliminar=0x7f09006c;
+        public static final int btGaleria=0x7f09006b;
+        public static final int btPicture=0x7f09005d;
         public static final int buyButton=0x7f090028;
         public static final int buy_now=0x7f09002c;
         public static final int buy_with_google=0x7f09002d;
@@ -1725,9 +1728,9 @@ containing a value of this type.
         public static final int collapseActionView=0x7f09001c;
         public static final int comentspace=0x7f09005c;
         public static final int comentzone=0x7f09005b;
-        public static final int container=0x7f09005f;
+        public static final int container=0x7f090063;
         public static final int coordzone=0x7f090053;
-        public static final int dbwindow=0x7f09005e;
+        public static final int dbwindow=0x7f090060;
         public static final int decor_content_parent=0x7f090043;
         public static final int default_activity_button=0x7f090038;
         public static final int dialog=0x7f090020;
@@ -1739,6 +1742,8 @@ containing a value of this type.
         public static final int etiquetas=0x7f09005a;
         public static final int expand_activities_button=0x7f090036;
         public static final int expanded_menu=0x7f09003c;
+        public static final int geoPuntosList=0x7f090062;
+        public static final int gestionTitle=0x7f090061;
         public static final int grayscale=0x7f090030;
         public static final int holo_dark=0x7f090023;
         public static final int holo_light=0x7f090024;
@@ -1748,20 +1753,22 @@ containing a value of this type.
         public static final int icon=0x7f09003a;
         public static final int ifRoom=0x7f09001d;
         public static final int image=0x7f090037;
+        public static final int ivPicture=0x7f09005e;
         public static final int labelzone=0x7f090059;
         public static final int listMode=0x7f090009;
         public static final int list_item=0x7f090039;
-        public static final int map=0x7f090064;
+        public static final int map=0x7f090068;
         public static final int match_parent=0x7f09002a;
-        public static final int menu_button1=0x7f090060;
-        public static final int menu_button2=0x7f090061;
-        public static final int menu_button3=0x7f090062;
-        public static final int menu_button4=0x7f090063;
+        public static final int menu_button1=0x7f090064;
+        public static final int menu_button2=0x7f090065;
+        public static final int menu_button3=0x7f090066;
+        public static final int menu_button4=0x7f090067;
         public static final int middle=0x7f090015;
         public static final int monochrome=0x7f090031;
         public static final int never=0x7f09001e;
         public static final int none=0x7f09000e;
         public static final int normal=0x7f09000a;
+        public static final int parTagButt=0x7f090069;
         public static final int production=0x7f090025;
         public static final int progress_circular=0x7f090005;
         public static final int progress_horizontal=0x7f090006;
@@ -1791,6 +1798,8 @@ containing a value of this type.
         public static final int tabMode=0x7f09000b;
         public static final int terrain=0x7f09001a;
         public static final int title=0x7f09003b;
+        public static final int tvComentario=0x7f09006d;
+        public static final int tvEtiqueta=0x7f09006a;
         public static final int tvLatitud=0x7f090055;
         public static final int tvLongitud=0x7f090057;
         public static final int up=0x7f090008;
@@ -1827,15 +1836,18 @@ containing a value of this type.
         public static final int abc_search_view=0x7f030015;
         public static final int abc_simple_dropdown_hint=0x7f030016;
         public static final int activity_crear=0x7f030017;
-        public static final int activity_main=0x7f030018;
-        public static final int activity_map_view=0x7f030019;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001a;
+        public static final int activity_gestion=0x7f030018;
+        public static final int activity_main=0x7f030019;
+        public static final int activity_map_view=0x7f03001a;
+        public static final int geopunto_layout=0x7f03001b;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001c;
     }
     public static final class menu {
         public static final int global=0x7f0d0000;
         public static final int mapview=0x7f0d0001;
         public static final int menu_crear=0x7f0d0002;
-        public static final int menu_main=0x7f0d0003;
+        public static final int menu_gestion=0x7f0d0003;
+        public static final int menu_main=0x7f0d0004;
     }
     public static final class raw {
         public static final int gtm_analytics=0x7f050000;
@@ -1904,18 +1916,20 @@ containing a value of this type.
         public static final int navigation_drawer_open=0x7f0b0037;
         public static final int store_picture_message=0x7f0b0038;
         public static final int store_picture_title=0x7f0b0039;
-        public static final int tag_amarillo=0x7f0b003a;
-        public static final int tag_azul=0x7f0b003b;
-        public static final int tag_rojo=0x7f0b003c;
-        public static final int tag_verde=0x7f0b003d;
-        public static final int title_activity_crear=0x7f0b003e;
-        public static final int title_activity_filter=0x7f0b003f;
-        public static final int title_activity_main=0x7f0b0040;
-        public static final int title_activity_map_view=0x7f0b0041;
-        public static final int title_section1=0x7f0b0042;
-        public static final int title_section2=0x7f0b0043;
-        public static final int title_section3=0x7f0b0044;
-        public static final int wallet_buy_button_place_holder=0x7f0b0045;
+        public static final int tablas_locales=0x7f0b003a;
+        public static final int tag_amarillo=0x7f0b003b;
+        public static final int tag_azul=0x7f0b003c;
+        public static final int tag_rojo=0x7f0b003d;
+        public static final int tag_verde=0x7f0b003e;
+        public static final int title_activity_crear=0x7f0b003f;
+        public static final int title_activity_filter=0x7f0b0040;
+        public static final int title_activity_gestion=0x7f0b0041;
+        public static final int title_activity_main=0x7f0b0042;
+        public static final int title_activity_map_view=0x7f0b0043;
+        public static final int title_section1=0x7f0b0044;
+        public static final int title_section2=0x7f0b0045;
+        public static final int title_section3=0x7f0b0046;
+        public static final int wallet_buy_button_place_holder=0x7f0b0047;
     }
     public static final class style {
         /**  Customize your theme here. 

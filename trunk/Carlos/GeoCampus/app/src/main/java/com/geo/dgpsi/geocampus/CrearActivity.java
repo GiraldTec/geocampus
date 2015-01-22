@@ -3,10 +3,14 @@ package com.geo.dgpsi.geocampus;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,19 +18,24 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class CrearActivity extends Activity {
     public static TextView tvLatitud, tvLongitud, tvDBW;
+    public static ImageView ivPicture;
     public static DbManager manager;
     public static Spinner spin;
-    public static Button buttAct, buttcreate;
+    public static Button buttAct, buttPicture, buttcreate;
     public static GPSTracker gps;
+    public static Uri fileUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,26 +98,62 @@ public class CrearActivity extends Activity {
 
         final EditText comentSpace =  (EditText) findViewById(R.id.comentspace);
 
+        ////////// Funcionalidad de tomar una foto
+
+        ivPicture = (ImageView) findViewById(R.id.ivPicture);
+
+        buttPicture = (Button) findViewById(R.id.btPicture);
+        buttPicture.setOnClickListener(new View.OnClickListener() {
+            private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
+            @Override
+            public void onClick(View v) {
+                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+                    fileUri = FileSaver.getOutputMediaFileUri(1); // create a file to save the image
+                    takePictureIntent.putExtra("return-data",true);
+                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri); // set the image file name
+                    startActivityForResult(takePictureIntent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+                }
+                //ivPicture.setText(fileUri.getPath());
 
 
-        ////////// Funcionalidad de crear un geopunto
+            /*
+                // create Intent to take a picture and return control to the calling application
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+                fileUri = FileSaver.getOutputMediaFileUri(1); // create a file to save the image
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri); // set the image file name
+
+                // start the image capture Intent
+                startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);*/
+            }
+
+        });
+
+                ////////// Funcionalidad de crear un geopunto BOTON+CONTADOR
 
         tvDBW = (TextView) findViewById(R.id.dbwindow);
-
 
         buttcreate = (Button) findViewById(R.id.btCreate);
         buttcreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            // TODO arreglar el fallo de no tener coordenadas (y q no se joda el casting....)
-                Float lat = new Float(tvLatitud.getText().toString());
-                Float lon = new Float(tvLongitud.getText().toString());
-                String tag = new String(spin.getSelectedItem().toString());
-                String com = new String(comentSpace.getText().toString());
+                try{
+                    Float lat = new Float(tvLatitud.getText().toString());
+                    Float lon = new Float(tvLongitud.getText().toString());
+                    String tag = new String(spin.getSelectedItem().toString());
+                    String uri = new String(fileUri.getPath());
+                    String com = new String(comentSpace.getText().toString());
 
-                manager.insertar(lat.floatValue(),lon.floatValue(),tag,com);
-                tvDBW.setText(String.valueOf(manager.getSize()));
-                //finish();
+                    //TODO comunicar con el servidor y recibir el id_Global
+
+                    if(lat!=null && lon!=null && tag!=null && uri!=null && com!=null){
+                        manager.insertarPropios(lat.floatValue(),lon.floatValue(),tag,uri,com);
+                        tvDBW.setText(String.valueOf(manager.getSize()));
+                        finish();
+                    }
+
+                }catch(Exception e){    }
             }
         });
 
@@ -116,4 +161,21 @@ public class CrearActivity extends Activity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // TODO Auto-generated method stub
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == -1 ){// Ha tomado la fotografía con éxito
+            Bitmap bp = null;
+            try {
+                bp = MediaStore.Images.Media.getBitmap(this.getContentResolver(),fileUri);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            ivPicture.setImageBitmap(bp);
+            buttPicture.setEnabled(false);
+        }
+
+
+    }
 }

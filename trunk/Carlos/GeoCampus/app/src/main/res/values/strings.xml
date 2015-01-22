@@ -18,5 +18,7 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_crear">CrearActivity</string>
+    <string name="title_activity_gestion">GestionActivity</string>
+    <string name="tablas_locales">GeoPuntos locales</string>
 
 </resources>
