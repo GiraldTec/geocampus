@@ -10,10 +10,12 @@
  The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but are recommended.
     -->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+
+    <uses-feature android:name="android.hardware.camera" />
 
     <application
         android:allowBackup="true"
@@ -51,6 +53,18 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.geo.dgpsi.geocampus.MainActivity" />
         </activity>
+        <activity
+            android:name=".GestionActivity"
+            android:label="@string/title_activity_gestion">
+            <intent-filter>
+                <action android:name="com.geo.dgpsi.geocampus.GestionActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.geo.dgpsi.geocampus.MainActivity" />
+        </activity>
+
     </application>
 
 </manifest>

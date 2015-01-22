@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffffff"
+    android:layout_margin="1dp">
+
+    <TableRow
+        android:id="@+id/parTagButt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="1dp"
+        android:stretchColumns="0,1,2">
+        <TextView
+            android:id="@+id/tvEtiqueta"
+
+            android:layout_width="wrap_content"
+            android:layout_height="40dip"
+            android:paddingRight="10dip"
+            android:paddingLeft="10dip"
+            android:background="#77ccffde"
+            android:layout_alignParentLeft="true"
+            android:gravity="center"/>
+        <Button
+            android:id="@+id/btGaleria"
+            android:text="Ver Foto"
+            android:layout_width="wrap_content"
+            android:layout_height="40dip"
+            android:paddingRight="10dip"
+            android:paddingLeft="10dip"
+            android:layout_gravity="center" />
+        <Button
+            android:id="@+id/btEliminar"
+            android:text="Eliminar"
+            android:layout_width="wrap_content"
+            android:layout_height="40dip"
+            android:paddingRight="10dip"
+            android:paddingLeft="10dip"
+            android:layout_alignParentRight="true"/>
+    </TableRow>
+    <TextView
+        android:id="@+id/tvComentario"
+        android:layout_width="wrap_content"
+        android:layout_height="40dip"
+        android:background="#77ccffde"
+        android:layout_below="@+id/parTagButt"
+        android:gravity="center"
+        android:layout_margin="1dp"/>
+
+</RelativeLayout>
