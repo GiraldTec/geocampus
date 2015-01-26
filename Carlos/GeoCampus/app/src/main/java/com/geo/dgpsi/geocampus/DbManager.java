@@ -67,4 +67,8 @@ public class DbManager {
         return db.query(TABLE_NAME_PROPIOS,columnas,null,null,null,null,null);
     }
 
+    public void closeDB(){
+        db.close();
+    }
+
 }
