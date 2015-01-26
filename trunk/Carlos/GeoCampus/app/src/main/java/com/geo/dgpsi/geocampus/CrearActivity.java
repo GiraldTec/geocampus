@@ -9,6 +9,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.media.Image;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.Menu;
@@ -21,21 +22,33 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class CrearActivity extends Activity {
-    public static TextView tvLatitud, tvLongitud, tvDBW;
-    public static ImageView ivPicture;
-    public static DbManager manager;
-    public static Spinner spin;
-    public static Button buttAct, buttPicture, buttcreate;
-    public static GPSTracker gps;
-    public static Uri fileUri;
+    public  TextView tvLatitud, tvLongitud, tvDBW;
+    public  ImageView ivPicture;
+    public  DbManager manager;
+    public  Spinner spin;
+    public  Button buttAct, buttPicture, buttcreate;
+    public  GPSTracker gps;
+    public  Uri fileUri;
+    public  Bitmap bp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,18 +127,7 @@ public class CrearActivity extends Activity {
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri); // set the image file name
                     startActivityForResult(takePictureIntent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
                 }
-                //ivPicture.setText(fileUri.getPath());
 
-
-            /*
-                // create Intent to take a picture and return control to the calling application
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
-                fileUri = FileSaver.getOutputMediaFileUri(1); // create a file to save the image
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri); // set the image file name
-
-                // start the image capture Intent
-                startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);*/
             }
 
         });
@@ -145,11 +147,16 @@ public class CrearActivity extends Activity {
                     String uri = new String(fileUri.getPath());
                     String com = new String(comentSpace.getText().toString());
 
-                    //TODO comunicar con el servidor y recibir el id_Global
+                    // comunicar con el servidor y recibir el id_Global
+                    new Insertar(CrearActivity.this).execute();
 
                     if(lat!=null && lon!=null && tag!=null && uri!=null && com!=null){
-                        manager.insertarPropios(lat.floatValue(),lon.floatValue(),tag,uri,com);
+                        manager.insertarPropios(lat.floatValue(), lon.floatValue(), tag, uri, com);
                         tvDBW.setText(String.valueOf(manager.getSize()));
+
+                        bp.recycle();
+                        bp = null;
+
                         finish();
                     }
 
@@ -163,10 +170,10 @@ public class CrearActivity extends Activity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // TODO Auto-generated method stub
+
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == -1 ){// Ha tomado la fotografía con éxito
-            Bitmap bp = null;
+            bp = null;
             try {
                 bp = MediaStore.Images.Media.getBitmap(this.getContentResolver(),fileUri);
             } catch (Exception e) {
@@ -178,4 +185,76 @@ public class CrearActivity extends Activity {
 
 
     }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        manager.closeDB();
+
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////METODOS DEL WEB SERVICES QUE INSERTAN LOS DATOS A LA BASE DE DATOS EN EL SERVIDOR.
+    private boolean setGeopuntos(){
+        HttpClient httpclient;
+        List<NameValuePair> nameValuePairs;
+        //A�adimos nuestros datos
+        nameValuePairs = new ArrayList<NameValuePair>(3);
+        nameValuePairs.add(new BasicNameValuePair("latitud", tvLatitud.toString().trim()));
+        nameValuePairs.add(new BasicNameValuePair("longitud",tvLongitud.toString().trim()));
+        nameValuePairs.add(new BasicNameValuePair("etiqueta",spin.toString().trim()));
+        HttpPost httppost;
+        httpclient=new DefaultHttpClient();
+        httppost= new HttpPost("http://geocampus.hol.es/register.php"); // Url del Servidor
+        try {
+            httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+            HttpResponse respuesta_Id = httpclient.execute(httppost);
+
+
+            return true;
+        } catch (UnsupportedEncodingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (ClientProtocolException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return false;
+    }
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////LA FUNCION ASYNCRONICA QUE TRABAJA EN BACKGROUND PARA INSERTAR LOS DATOS AL SERVIDOR/////////////
+    class Insertar extends AsyncTask<String,String,String> {
+
+        private Activity context;
+
+        Insertar(Activity context){
+            this.context=context;
+        }
+        @Override
+        protected String doInBackground(String... params) {
+            // TODO Auto-generated method stub
+            if(setGeopuntos())
+                context.runOnUiThread(new Runnable(){
+                    @Override
+                    public void run() {
+                        // TODO Auto-generated method stub
+                        Toast.makeText(context, "Geopunto Insertado con exito", Toast.LENGTH_LONG).show();
+                    }
+                });
+            else
+                context.runOnUiThread(new Runnable(){
+                    @Override
+                    public void run() {
+                        // TODO Auto-generated method stub
+                        Toast.makeText(context, "Geopunto NO Insertado con Exito", Toast.LENGTH_LONG).show();
+                    }
+                });
+            return null;
+        }
+    }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 }

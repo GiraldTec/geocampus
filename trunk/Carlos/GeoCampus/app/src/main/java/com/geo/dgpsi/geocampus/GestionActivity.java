@@ -26,6 +26,7 @@ import java.util.ArrayList;
 public class GestionActivity extends ActionBarActivity {
 
     public ArrayList<GeoPunto> geopuntosLocales;
+    public DbManager manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +34,7 @@ public class GestionActivity extends ActionBarActivity {
         setContentView(R.layout.activity_gestion);
 
         //coger toda la base de datos local y meterla en geopuntosLocales
-        DbManager manager = new DbManager(this);
+        manager = new DbManager(this);
         Cursor cursor = manager.getAllPropios();
         geopuntosLocales = new ArrayList<GeoPunto>();
         // Recorrer el cursor recogiendo los GeoPuntos en una estructura ArrayList
@@ -73,13 +74,21 @@ public class GestionActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        manager.closeDB();
+    }
 
 
 
     private class GeoPuntoAdapter extends ArrayAdapter<GeoPunto> {
-        private final Context context;
+        private Context context;
         private final ArrayList<GeoPunto> puntos;
 
+        public Context getContext(){
+            return context;
+        }
 
         public GeoPuntoAdapter(Context context, int resource, ArrayList<GeoPunto> puntos) {
             super(context, resource, puntos);
@@ -117,9 +126,9 @@ public class GestionActivity extends ActionBarActivity {
 
                     File dir = new File(g.getUri());
                     Intent intent = new Intent();
-                    intent.setAction(android.content.Intent.ACTION_VIEW);
-                    intent.setData(Uri.fromFile(dir));
-                    startActivity(intent);
+                    intent.setAction(Intent.ACTION_VIEW);
+                    intent.setDataAndType(Uri.fromFile(dir),"image/*");
+                    getContext().startActivity(intent);
 
                 }
             });
@@ -140,5 +149,7 @@ public class GestionActivity extends ActionBarActivity {
 
 
     }
+
+
 
 }
