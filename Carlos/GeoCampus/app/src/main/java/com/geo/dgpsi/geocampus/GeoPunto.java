@@ -9,6 +9,7 @@ public class GeoPunto {
     private Float latitud, longitud;
     private String etiqueta, comentario, uri;
     private Integer id_global, id_local;
+    public boolean eliminado = false;
 
     public Float getLatitud() {
         return latitud;

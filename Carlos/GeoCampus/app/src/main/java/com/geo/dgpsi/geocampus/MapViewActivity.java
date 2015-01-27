@@ -77,42 +77,50 @@ public class MapViewActivity extends FragmentActivity {
         Cursor propioscursor = manager.getAllPropios();
         geopuntosLocales = new HashSet<GeoPunto>();
         // Recorrer el cursor recogiendo los GeoPuntos en una estructura ArrayList
-        int j = 0;
+
         while(propioscursor.moveToNext()){
             geopuntosLocales.add(new GeoPunto(new Integer(propioscursor.getInt(0)),new Integer(propioscursor.getInt(1)),propioscursor.getFloat(2),
                     propioscursor.getFloat(3),propioscursor.getString(4),propioscursor.getString(5),propioscursor.getString(6)));
         }
         ////// Obtener los puntos globales
         /*
-        Cursor cursor = manager.getAllPropios();
-        geopuntosLocales = new ArrayList<GeoPunto>();
+        Cursor globalscursor = manager.getAllGlobals();
+        geopuntosglobales = new HashSet<GeoPunto>();
         // Recorrer el cursor recogiendo los GeoPuntos en una estructura ArrayList
-        int j = 0;
-        while(cursor.moveToNext()){
-            geopuntosLocales.add(new GeoPunto(new Integer(cursor.getInt(0)),new Integer(cursor.getInt(1)),cursor.getFloat(2),
-                    cursor.getFloat(3),cursor.getString(4),cursor.getString(5),cursor.getString(6)));
-        }*/
 
+        while(globalscursor.moveToNext()){
+            geopuntosglobales.add(new GeoPunto(new Integer(0),new Integer(globalscursor.getInt(0)),globalscursor.getFloat(1),
+                    globalscursor.getFloat(2),globalscursor.getString(3),"",""));
+        }
+        */
         pintaPuntos();
 
     }
 
     private void pintaPuntos() {
         mMap.clear();
+        //HashSet<GeoPunto> cjto;
         if (chkPropios.isChecked()) {
-            for (GeoPunto gp : geopuntosLocales) {
-                float color=BitmapDescriptorFactory.HUE_ROSE;
-                if(gp.getEtiqueta().equals("Estudiar")) color = BitmapDescriptorFactory.HUE_BLUE;
-                if(gp.getEtiqueta().equals("Comer")) color = BitmapDescriptorFactory.HUE_YELLOW;
-                if(gp.getEtiqueta().equals("Deporte")) color = BitmapDescriptorFactory.HUE_GREEN;
-                if(gp.getEtiqueta().equals("Diversion")) color = BitmapDescriptorFactory.HUE_RED;
+        //    cjto = geopuntosLocales;
+        //} else {
+        //    cjto = geopuntosglobales;
+        //}
 
-               if(spin.getSelectedItem().toString().equals("Todos")||gp.getEtiqueta().equals(spin.getSelectedItem().toString()))
-                mMap.addMarker(new MarkerOptions()
-                        .position(new LatLng(gp.getLongitud(), gp.getLatitud()))
-                        .icon(BitmapDescriptorFactory.defaultMarker(color)));
+            for (GeoPunto gp : geopuntosLocales) {
+                float color = BitmapDescriptorFactory.HUE_ROSE;
+                if (gp.getEtiqueta().equals("Estudiar")) color = BitmapDescriptorFactory.HUE_BLUE;
+                if (gp.getEtiqueta().equals("Comer")) color = BitmapDescriptorFactory.HUE_YELLOW;
+                if (gp.getEtiqueta().equals("Deporte")) color = BitmapDescriptorFactory.HUE_GREEN;
+                if (gp.getEtiqueta().equals("Diversion")) color = BitmapDescriptorFactory.HUE_RED;
+
+                if (spin.getSelectedItem().toString().equals("Todos") || gp.getEtiqueta().equals(spin.getSelectedItem().toString()))
+                    mMap.addMarker(new MarkerOptions()
+                            .position(new LatLng(gp.getLongitud(), gp.getLatitud()))
+                            .icon(BitmapDescriptorFactory.defaultMarker(color)));
             }
+
         }
+
     }
 
     @Override
