@@ -5,8 +5,8 @@ import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import static com.geo.dgpsi.geocampus.DbManager.CREATE_TABLE;
-import static com.geo.dgpsi.geocampus.DbManager.DROP_TABLE;
+import static com.geo.dgpsi.geocampus.DbManager.CREATE_TABLE_PROPIO;
+import static com.geo.dgpsi.geocampus.DbManager.CREATE_TABLE_GLOBAL;
 
 /**
  * Created by Giraldillo on 05/01/2015.
@@ -22,7 +22,8 @@ public class DbHelper extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CREATE_TABLE);
+        db.execSQL(CREATE_TABLE_PROPIO);
+        db.execSQL(CREATE_TABLE_GLOBAL);
         //System.out.println("tamaniotamanio"+DatabaseUtils.queryNumEntries(db, DbManager.TABLE_NAME));
     }
 

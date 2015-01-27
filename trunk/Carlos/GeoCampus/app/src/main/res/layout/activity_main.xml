@@ -51,7 +51,7 @@
                 android:layout_margin="4dip"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="About"
+                android:text="Actualizar"
                 android:paddingTop="50dip"
                 android:paddingBottom="50dip" />
 

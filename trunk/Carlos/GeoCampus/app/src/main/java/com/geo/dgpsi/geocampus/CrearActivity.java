@@ -32,6 +32,9 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
@@ -49,6 +52,8 @@ public class CrearActivity extends Activity {
     public  GPSTracker gps;
     public  Uri fileUri;
     public  Bitmap bp;
+    public  EditText comentSpace;
+    public  Integer globalID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,10 +64,11 @@ public class CrearActivity extends Activity {
         manager = new DbManager(this);
 
         ///////// Creamos la intereccion con el GPS y los campos de latitud y longitud
-        gps = new GPSTracker(this);
+        inicializaGPS();
 
         tvLatitud = (TextView) findViewById(R.id.tvLatitud);
         tvLongitud = (TextView)findViewById(R.id.tvLongitud);
+
 
         //LocationManager locManager = (LocationManager)getSystemService(LOCATION_SERVICE);
         //final Location localizacion = locManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
@@ -75,12 +81,16 @@ public class CrearActivity extends Activity {
             tvLongitud.setText("wait for it..");
         }
 
+        gps.stopUsingGPS();
+        gps = null;
+
         ///// Boton de actualizar
 
         buttAct = (Button) findViewById(R.id.btActualizaGps);
         buttAct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                inicializaGPS();
                 if(gps.canGetLocation()){
                     tvLatitud.setText(String.valueOf(gps.getLatitude()));//String.valueOf(localizacion.getLatitude()));
                     tvLongitud.setText(String.valueOf(gps.getLongitude()));//String.valueOf(localizacion.getLongitude()));
@@ -88,6 +98,8 @@ public class CrearActivity extends Activity {
                     tvLatitud.setText("wait for it..");
                     tvLongitud.setText("wait for it..");
                 }
+                gps.stopUsingGPS();
+                gps = null;
             }
         });
 
@@ -109,7 +121,7 @@ public class CrearActivity extends Activity {
 
         ////////// Rellenar comentario(30)
 
-        final EditText comentSpace =  (EditText) findViewById(R.id.comentspace);
+        comentSpace =  (EditText) findViewById(R.id.comentspace);
 
         ////////// Funcionalidad de tomar una foto
 
@@ -147,17 +159,19 @@ public class CrearActivity extends Activity {
                     String uri = new String(fileUri.getPath());
                     String com = new String(comentSpace.getText().toString());
 
-                    // comunicar con el servidor y recibir el id_Global
-                    new Insertar(CrearActivity.this).execute();
-
                     if(lat!=null && lon!=null && tag!=null && uri!=null && com!=null){
-                        manager.insertarPropios(lat.floatValue(), lon.floatValue(), tag, uri, com);
+
+                        // comunicar con el servidor y recibir el id_Global
+                        new Insertar(CrearActivity.this).execute();
+
+
+                       /* manager.insertarPropios(lat.floatValue(), lon.floatValue(), tag, uri, com);
                         tvDBW.setText(String.valueOf(manager.getSize()));
 
                         bp.recycle();
                         bp = null;
 
-                        finish();
+                        finalizar();*/
                     }
 
                 }catch(Exception e){    }
@@ -166,6 +180,14 @@ public class CrearActivity extends Activity {
 
 
 
+    }
+
+    protected void inicializaGPS(){
+        gps = new GPSTracker(this);
+    }
+
+    protected void finalizar(){
+        finish();
     }
 
     @Override
@@ -200,16 +222,19 @@ public class CrearActivity extends Activity {
         List<NameValuePair> nameValuePairs;
         //A�adimos nuestros datos
         nameValuePairs = new ArrayList<NameValuePair>(3);
-        nameValuePairs.add(new BasicNameValuePair("latitud", tvLatitud.toString().trim()));
-        nameValuePairs.add(new BasicNameValuePair("longitud",tvLongitud.toString().trim()));
-        nameValuePairs.add(new BasicNameValuePair("etiqueta",spin.toString().trim()));
+        nameValuePairs.add(new BasicNameValuePair("latitud", tvLatitud.getText().toString().trim()));
+        nameValuePairs.add(new BasicNameValuePair("longitud",tvLongitud.getText().toString().trim()));
+        nameValuePairs.add(new BasicNameValuePair("etiqueta",spin.getSelectedItem().toString().trim()));
         HttpPost httppost;
         httpclient=new DefaultHttpClient();
         httppost= new HttpPost("http://geocampus.hol.es/register.php"); // Url del Servidor
         try {
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
             HttpResponse respuesta_Id = httpclient.execute(httppost);
+            String json_string = EntityUtils.toString(respuesta_Id.getEntity());
+            JSONObject temp1 = new JSONObject(json_string);
 
+            globalID = new Integer(temp1.getString("id_global"));
 
             return true;
         } catch (UnsupportedEncodingException e) {
@@ -220,6 +245,8 @@ public class CrearActivity extends Activity {
             e.printStackTrace();
         } catch (IOException e) {
             // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (JSONException e) {
             e.printStackTrace();
         }
         return false;
@@ -240,7 +267,21 @@ public class CrearActivity extends Activity {
                 context.runOnUiThread(new Runnable(){
                     @Override
                     public void run() {
-                        // TODO Auto-generated method stub
+
+                        Float lat = new Float(tvLatitud.getText().toString());
+                        Float lon = new Float(tvLongitud.getText().toString());
+                        String tag = new String(spin.getSelectedItem().toString());
+                        String uri = new String(fileUri.getPath());
+                        String com = new String(comentSpace.getText().toString());
+
+                        manager.insertarPropios(lat.floatValue(), lon.floatValue(), tag, uri, com, globalID.intValue());
+                        tvDBW.setText(String.valueOf(manager.getSizePropios()));
+
+                        bp.recycle();
+                        bp = null;
+
+                        finalizar();
+
                         Toast.makeText(context, "Geopunto Insertado con exito", Toast.LENGTH_LONG).show();
                     }
                 });

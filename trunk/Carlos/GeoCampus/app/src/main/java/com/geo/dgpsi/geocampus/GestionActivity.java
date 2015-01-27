@@ -107,27 +107,24 @@ public class GestionActivity extends ActionBarActivity {
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View rowView = inflater.inflate(R.layout.geopunto_layout, parent, false);
 
-            TextView etiqueta = (TextView) rowView.findViewById(R.id.tvEtiqueta);
+            final TextView etiqueta = (TextView) rowView.findViewById(R.id.tvEtiqueta);
             etiqueta.setText(gp.getEtiqueta());
 
-            Button verFoto = (Button) rowView.findViewById(R.id.btGaleria);
-            Button eliminar = (Button) rowView.findViewById(R.id.btEliminar);
-            TextView comentario = (TextView) rowView.findViewById(R.id.tvComentario);
-            comentario.setText(gp.getComentario());
+            final Button verFoto = (Button) rowView.findViewById(R.id.btGaleria);
+            final Button eliminar = (Button) rowView.findViewById(R.id.btEliminar);
+            final TextView comentario = (TextView) rowView.findViewById(R.id.tvComentario);
+            comentario.setText(gp.getComentario()+"++++"+gp.getId_global().toString());
 
             verFoto.setOnClickListener(new View.OnClickListener() {
                 GeoPunto g = gp;
+
                 @Override
                 public void onClick(View v) {
-
-                    // TODO abrir un intent de Galería
-
-
 
                     File dir = new File(g.getUri());
                     Intent intent = new Intent();
                     intent.setAction(Intent.ACTION_VIEW);
-                    intent.setDataAndType(Uri.fromFile(dir),"image/*");
+                    intent.setDataAndType(Uri.fromFile(dir), "image/*");
                     getContext().startActivity(intent);
 
                 }
@@ -137,12 +134,17 @@ public class GestionActivity extends ActionBarActivity {
 
                 @Override
                 public void onClick(View v) {
-                    //TODO eliminar la fila de la tabla local
-
+                    manager.eliminarPropio(gp.getId_local());
+                    gp.eliminado = true;
+                    verFoto.setEnabled(false);
+                    eliminar.setEnabled(false);
                 }
             });
 
-
+            if(gp.eliminado){
+                verFoto.setEnabled(false);
+                eliminar.setEnabled(false);
+            }
             return rowView;
         }
 
