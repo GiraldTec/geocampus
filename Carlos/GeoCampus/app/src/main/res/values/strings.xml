@@ -15,7 +15,7 @@
     <string name="tag_verde">Verde</string>
     <string name="tag_azul">Azul</string>
     <string name="tag_amarillo">Amarillo</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">GeoCampus</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_crear">CrearActivity</string>
     <string name="title_activity_gestion">GestionActivity</string>

@@ -274,7 +274,7 @@ public class CrearActivity extends Activity {
                         String uri = new String(fileUri.getPath());
                         String com = new String(comentSpace.getText().toString());
 
-                        manager.insertarPropios(lat.floatValue(), lon.floatValue(), tag, uri, com, globalID.intValue());
+                        manager.insertarPropios(lon.floatValue(),lat.floatValue(), tag, uri, com, globalID.intValue());
                         tvDBW.setText(String.valueOf(manager.getSizePropios()));
 
                         bp.recycle();

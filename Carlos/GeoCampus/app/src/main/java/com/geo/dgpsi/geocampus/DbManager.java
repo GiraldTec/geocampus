@@ -50,6 +50,10 @@ public class DbManager {
         System.out.println(db.getPath());
     }
 
+    public SQLiteDatabase getDb(){
+        return db;
+    }
+
     public void insertarPropios(float longitud, float latitud, String etiqueta, String directorio, String comentario, int global){
         ContentValues valores = new ContentValues();
         valores.put(CN_ID_GLOBAL,global);
@@ -60,6 +64,21 @@ public class DbManager {
         valores.put(CN_COM,comentario);
 
         db.insert(TABLE_NAME_PROPIOS,null,valores);
+    }
+
+    public void insertarGlobals(float longitud, float latitud, String etiqueta, int global){
+        ContentValues valores = new ContentValues();
+        valores.put(CN_ID_GLOBAL,global);
+        valores.put(CN_LON,longitud);
+        valores.put(CN_LAT,latitud);
+        valores.put(CN_TAG,etiqueta);
+
+        long insert = db.insert(TABLE_NAME_GLOBALS,null,valores);
+        if (insert==-1){
+            insert = 0;
+        }else{
+            insert = 1;
+        }
     }
 
     public void eliminarPropio(int local){
@@ -73,7 +92,6 @@ public class DbManager {
     public long getSizePropios(){
         return DatabaseUtils.queryNumEntries(db,TABLE_NAME_PROPIOS);
     }
-
     public long getSizeGlobals(){
         return DatabaseUtils.queryNumEntries(db,TABLE_NAME_GLOBALS);
     }
@@ -82,7 +100,6 @@ public class DbManager {
         String[] columnas = new String[] {CN_ID_LOCAL,CN_ID_GLOBAL,CN_LON,CN_LAT,CN_TAG,CN_URI,CN_COM};
         return db.query(TABLE_NAME_PROPIOS,columnas,null,null,null,null,null);
     }
-
     public Cursor getAllGlobals(){
         String[] columnas = new String[] {CN_ID_GLOBAL,CN_LON,CN_LAT,CN_TAG};
         return db.query(TABLE_NAME_GLOBALS,columnas,null,null,null,null,null);

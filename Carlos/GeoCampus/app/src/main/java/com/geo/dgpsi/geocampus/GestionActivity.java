@@ -113,7 +113,7 @@ public class GestionActivity extends ActionBarActivity {
             final Button verFoto = (Button) rowView.findViewById(R.id.btGaleria);
             final Button eliminar = (Button) rowView.findViewById(R.id.btEliminar);
             final TextView comentario = (TextView) rowView.findViewById(R.id.tvComentario);
-            comentario.setText(gp.getComentario()+"++++"+gp.getId_global().toString());
+            comentario.setText(gp.getComentario());//+"++++"+gp.getId_global().toString());
 
             verFoto.setOnClickListener(new View.OnClickListener() {
                 GeoPunto g = gp;
