@@ -274,7 +274,7 @@
     <string name="title_activity_crear">CrearActivity</string>
     <string name="title_activity_filter">FilterActivity</string>
     <string name="title_activity_gestion">GestionActivity</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">GeoCampus</string>
     <string name="title_activity_map_view">MapView</string>
     <string name="title_section1">Section 1</string>
     <string name="title_section2">Section 2</string>

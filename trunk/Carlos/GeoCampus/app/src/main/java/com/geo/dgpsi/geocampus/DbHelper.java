@@ -13,7 +13,7 @@ import static com.geo.dgpsi.geocampus.DbManager.CREATE_TABLE_GLOBAL;
  */
 public class DbHelper extends SQLiteOpenHelper{
 
-    private static final String DB_NAME = "geoCampusDB.sqlite";
+    private static final String DB_NAME = "geoCampusBD.sqlite";
     private static final int DB_VERSION = 1 ;
 
     public DbHelper(Context context) {

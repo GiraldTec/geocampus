@@ -1,16 +1,22 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:id="@+id/container"
     android:layout_width="match_parent" android:layout_height="match_parent"
     tools:context=".MainActivity" tools:ignore="MergeRootFrame">
 
-    <TableLayout
+    <TextView
+        android:id="@+id/mainTitle"
+        android:text="GeoCampus"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="45dip"
         android:gravity="center"
-        android:stretchColumns="1">
+        android:layout_gravity="center"
+        android:layout_alignParentTop="true"/>
 
-        <TableRow android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+        <TableRow
+            android:id="@+id/unoYdos"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mainTitle">
 
             <Button
                 android:id="@+id/menu_button1"
@@ -42,7 +48,11 @@
                 android:paddingBottom="50dip" />
         </TableRow>
 
-        <TableRow>
+        <TableRow
+            android:id="@+id/tresYcuatro"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/unoYdos">
 
             <Button
                 android:id="@+id/menu_button3"
@@ -68,6 +78,24 @@
 
         </TableRow>
 
-    </TableLayout>
+        <TextView
+            android:id="@+id/creditos"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/tresYcuatro"
+            android:gravity="center"
+            android:textSize="20dip"
+            android:text=
+"Una aplicación de:
+\n
+\nJulio Anchiraico
+\nEsteban Armas
+\nOscar Chamache
+\nCarlos Giraldo
+\nRicardo Mendoza">
 
-</FrameLayout>
+
+        </TextView>
+
+
+</RelativeLayout>

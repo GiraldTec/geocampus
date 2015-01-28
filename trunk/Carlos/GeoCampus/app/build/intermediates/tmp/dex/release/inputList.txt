@@ -1,0 +1,6 @@
+C:\Users\Giraldillo\workspace\geoCamp\Carlos\GeoCampus\app\build\intermediates\classes\release
+C:\Users\Giraldillo\workspace\geoCamp\Carlos\GeoCampus\app\build\intermediates\pre-dexed\release\support-annotations-21.0.3-5be6a0977d0b9e21d1d31e558cae592b70f40c34.jar
+C:\Users\Giraldillo\workspace\geoCamp\Carlos\GeoCampus\app\build\intermediates\pre-dexed\release\internal_impl-21.0.3-6cfd79c1f87950ba8b5dac4144aeb2bfd9335dfd.jar
+C:\Users\Giraldillo\workspace\geoCamp\Carlos\GeoCampus\app\build\intermediates\pre-dexed\release\classes-2779ce182c113351746e6dfbdc5844e6fdb221fe.jar
+C:\Users\Giraldillo\workspace\geoCamp\Carlos\GeoCampus\app\build\intermediates\pre-dexed\release\classes-40edf622d051b0abb233ffd573c81ea93d173ea4.jar
+C:\Users\Giraldillo\workspace\geoCamp\Carlos\GeoCampus\app\build\intermediates\pre-dexed\release\classes-1067e9aefbecfe06feba97a9177d29779c2e3e50.jar

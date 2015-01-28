@@ -83,7 +83,7 @@ public class MapViewActivity extends FragmentActivity {
                     propioscursor.getFloat(3),propioscursor.getString(4),propioscursor.getString(5),propioscursor.getString(6)));
         }
         ////// Obtener los puntos globales
-        /*
+
         Cursor globalscursor = manager.getAllGlobals();
         geopuntosglobales = new HashSet<GeoPunto>();
         // Recorrer el cursor recogiendo los GeoPuntos en una estructura ArrayList
@@ -92,21 +92,21 @@ public class MapViewActivity extends FragmentActivity {
             geopuntosglobales.add(new GeoPunto(new Integer(0),new Integer(globalscursor.getInt(0)),globalscursor.getFloat(1),
                     globalscursor.getFloat(2),globalscursor.getString(3),"",""));
         }
-        */
+
         pintaPuntos();
 
     }
 
     private void pintaPuntos() {
         mMap.clear();
-        //HashSet<GeoPunto> cjto;
+        HashSet<GeoPunto> cjto;
         if (chkPropios.isChecked()) {
-        //    cjto = geopuntosLocales;
-        //} else {
-        //    cjto = geopuntosglobales;
-        //}
+            cjto = geopuntosLocales;
+        } else {
+            cjto = geopuntosglobales;
+        }
 
-            for (GeoPunto gp : geopuntosLocales) {
+            for (GeoPunto gp : cjto) {
                 float color = BitmapDescriptorFactory.HUE_ROSE;
                 if (gp.getEtiqueta().equals("Estudiar")) color = BitmapDescriptorFactory.HUE_BLUE;
                 if (gp.getEtiqueta().equals("Comer")) color = BitmapDescriptorFactory.HUE_YELLOW;
@@ -115,13 +115,13 @@ public class MapViewActivity extends FragmentActivity {
 
                 if (spin.getSelectedItem().toString().equals("Todos") || gp.getEtiqueta().equals(spin.getSelectedItem().toString()))
                     mMap.addMarker(new MarkerOptions()
-                            .position(new LatLng(gp.getLongitud(), gp.getLatitud()))
-                            .icon(BitmapDescriptorFactory.defaultMarker(color)));
+                            .position(new LatLng(gp.getLatitud(),gp.getLongitud()))
+                                    .icon(BitmapDescriptorFactory.defaultMarker(color)));
             }
 
         }
 
-    }
+
 
     @Override
     protected void onResume() {
