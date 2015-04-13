@@ -1,0 +1,1 @@
+A simple geo-tagger designed for campus activity and university locations
